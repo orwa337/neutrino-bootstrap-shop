@@ -57,9 +57,20 @@ $(() => {
         refreshProducts(products, linkName);
       });
     })
+
     //  or fail trying
     .fail((xhr, status, error) => {
       $('#root').append(`<div>Ajax Error products: ${error}</div>`);
+    });
+
+  $.ajax('http://localhost:9090/api/customers')
+    .done((customers) => {
+      const user = JSON.stringify(customers[5]);
+      localStorage.setItem('user', user);
+    })
+    //  or fail trying
+    .fail((xhr, status, error) => {
+      $('#root').append(`<div>Ajax Error categories: ${error}</div>`);
     });
   // End
 });
